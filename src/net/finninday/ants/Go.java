@@ -19,7 +19,7 @@ public class Go {
 		c.setLayout(new BorderLayout());
 		Field field = new Field();
 		c.add(field, BorderLayout.CENTER);
-		frame.setSize(300, 300);
+		frame.setSize(304, 324);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 
