@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.geom.Ellipse2D;
+import java.util.Date;
 import java.util.Vector;
 
 public class Trail {
@@ -12,12 +13,16 @@ public class Trail {
 	Graphics2D g2;
 	Food food;
 	Field field;
+	long created;
+	long maxTime = 10000; // 10 second lifetime on trails
 	
 	public Trail(Field fld, Food f) {
 		this.field = fld;
 		path = new Vector<Point>();
 		this.food = f;
 		f.trail = this;
+		Date now = new Date();
+		created = now.getTime();
 	}
 	
 	public void addStep(FloatPoint location) {
@@ -36,5 +41,11 @@ public class Trail {
 	public void decay(FloatPoint location) {
 		Point p = new Point(location.getIntX(), location.getIntY());
 		path.remove(p);
+		Date check = new Date();
+		Long now = check.getTime();
+		if (now - created > maxTime) {
+			path.removeAllElements();
+			created = now;
+		}
 	}
 }
