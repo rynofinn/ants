@@ -88,11 +88,13 @@ public class Field extends JComponent {
 		return null;
 	}
 	
-	public Food senseTrail(FloatPoint location) {
+	// this method is synchronized to keep one ant from decaying a trail while it
+	// is being sensed by another ant
+	public synchronized Food senseTrail(FloatPoint location) {
 		for(int i=0; i<foodSize; i++) {
 			Trail t = trail[i];
 			for (int j=0; j<t.path.size(); j++) {
-				if (location.distance(t.path.get(j))<1.0){
+				if ((t.path.get(j) != null) && (location.distance(t.path.get(j))<1.0)){
 					t.decay(location);
 					return t.food;
 				}

@@ -38,7 +38,7 @@ public class Trail {
 		}
 	}
 
-	public void decay(FloatPoint location) {
+	public synchronized void decay(FloatPoint location) {
 		Point p = new Point(location.getIntX(), location.getIntY());
 		path.remove(p);
 		Date check = new Date();
