@@ -94,7 +94,8 @@ public class Field extends JComponent {
 		for(int i=0; i<foodSize; i++) {
 			Trail t = trail[i];
 			for (int j=0; j<t.path.size(); j++) {
-				if ((t.path.get(j) != null) && (location.distance(t.path.get(j))<1.0)){
+				// is the ant near any point on this trail? 
+				if (location.distance(t.path.get(j))<1.0){
 					t.decay(location);
 					return t.food;
 				}

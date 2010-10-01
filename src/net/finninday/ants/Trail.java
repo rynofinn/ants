@@ -28,6 +28,8 @@ public class Trail {
 	public void addStep(FloatPoint location) {
 		Point p = new Point(location.getIntX(), location.getIntY());
 		path.add(p);
+		Long now = new Date().getTime();
+		created = now;
 	}
 
 	public void paint(Graphics g) {
@@ -41,11 +43,9 @@ public class Trail {
 	public synchronized void decay(FloatPoint location) {
 		Point p = new Point(location.getIntX(), location.getIntY());
 		path.remove(p);
-		Date check = new Date();
-		Long now = check.getTime();
+		Long now = new Date().getTime();
 		if (now - created > maxTime) {
 			path.removeAllElements();
-			created = now;
 		}
 	}
 }
