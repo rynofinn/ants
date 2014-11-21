@@ -1,4 +1,5 @@
 Java ant simulation
+===================
 
 Ants begin foraging randomly at the nest.  As they find food, they take a piece
 and bring it back to the nest, leaving a pheremone trail.  Other ants that
